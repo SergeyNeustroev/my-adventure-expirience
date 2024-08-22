@@ -34,7 +34,7 @@ router
     try {
       const post = await Post.findOne({ where: { id } });
       if (Post.userId === user.id) {
-        Post.destroy();
+        post.destroy();
         res.sendStatus(200);
       } else {
         res.status(400).json({ message: 'У вас нет прав на удаление' });
