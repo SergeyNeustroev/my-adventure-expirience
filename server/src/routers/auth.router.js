@@ -47,9 +47,8 @@ router
     }
 
     const user = await User.findOne({ where: { email } });
-
+    if (user) {
     const isCorrectPassword = await bcrypt.compare(password, user.password);
-
     if (!isCorrectPassword) {
       res.status(401).json({ message: 'Incorrect email or password' });
     } else {
@@ -62,6 +61,9 @@ router
         .cookie('refreshToken', refreshToken, cookieConfig.refreshToken)
         .json({ user: plainUser, accessToken });
     }
+  }else{
+    res.status(401).json({ message: 'Incorrect email or password' });
+  }
   })
   .get('/logout', (req, res) => {
     try {

@@ -50,7 +50,7 @@ function App() {
         {
           path: "/profile",
           element: (
-              <ProfilePage user={user} />
+              <ProfilePage user={user} setUser={setUser}/>
           ),
         },
       ],

@@ -1,10 +1,19 @@
 import axiosInstance, { setAccessToken } from '../../axiosInstance';
 import styles from './Navbar.module.css';
 import { Link, useNavigate } from 'react-router-dom';
+import { useEffect } from "react";
 
 
 export default function Navbar({ user, setUser }) {
   const navigate = useNavigate();
+
+  const changeHandler = (e) => {
+    setUser((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  };
+
+  useEffect(() => {
+    changeHandler
+  }, []);
 
   const logoutHandler = async () => {
     const response = await axiosInstance.get(

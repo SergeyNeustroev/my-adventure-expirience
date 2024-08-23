@@ -26,6 +26,7 @@ module.exports = {
       },
       photo: {
         type: Sequelize.STRING
+        defaultValue: "http://localhost:3100/images/default.jpg"
       },
       createdAt: {
         allowNull: false,
